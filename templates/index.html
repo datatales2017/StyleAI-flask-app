@@ -1,0 +1,46 @@
+<!doctype html>
+
+
+<html>
+   <header>
+      <h1>StyleAI Homepage</h1>
+   </header>
+   <p></p>
+   <p></p>
+   <p> Following images are chosen randomly. Click in front of
+   the image to checkout similar images. Hit reload to generate more random images
+   </p>
+
+   <button onclick="reloadFunction()">Generate More</button>
+
+   <script>
+   function reloadFunction() {
+       location.reload();
+   }
+   </script>
+
+   <body>
+      <table border = 1>
+         <tr>
+         {% for name in init_names[0:5] %}
+               <th> <img src= "{{ url_for('static',filename = name ) }}" >               
+               <form action="{{ url_for('handle_data') }}" method="post">
+               <input type="submit"  name ="button" value = "Check Similar">
+               <input type="hidden" name= "chosen_image" value = {{ name }}>
+               </form>
+               </th>
+         {% endfor %}
+         </tr>
+         <tr>
+         {% for name in init_names[5:] %}
+               <th> <img src= "{{ url_for('static',filename = name ) }}" >               
+               <form action="{{ url_for('handle_data') }}" method="post">
+               <input type="submit"  name ="button" value = "Check Similar">
+               <input type="hidden" name= "chosen_image" value = {{ name }}>
+               </form>
+               </th>
+         {% endfor %}
+         
+      </table>
+   </body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+   <header>
+      <h1>StyleAI</h1>
+      <h2>Recommendation page</h2>
+   </header>
+   <body>
+      <h3>Input Image</h3>      
+      <img src= "{{ url_for('static',filename = selected_names[0] ) }}" > </th>
+      <h3>Recommended Images</h3>
+      <table border = 1>
+         <tr>
+         {% for name in selected_names[1:] %}
+               <th>
+               <img src= "{{ url_for('static',filename = name ) }}" >
+               
+               <form action="{{ url_for('handle_data') }}" method="post">
+               <input type="submit"  name ="button" value = "Check Similar">
+               <input type="hidden" name= "chosen_image" value = {{ name }}>
+               </form>
+
+               </th>
+            
+         {% endfor %}
+         </tr>
+      </table>
+
+   <p>
+   <form action="/">
+   <input type="submit" value="Go Home" />
+   </form>
+
+   </body>
+</html>
+
